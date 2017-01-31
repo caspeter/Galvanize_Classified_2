@@ -13,16 +13,16 @@
       .state({
         name: 'home',
         url: '/',
-        component: 'postComponent'
+        component: 'messageComponent'
       })
-      .state({
-        name: 'editPostComponent',
-        url: '/edit/:id',
-        component: 'editPostComponent',
-        params: {
-          id: '1',
-        }
-      })
+      // .state({
+      //   name: 'editPostComponent',
+      //   url: '/edit/:id',
+      //   component: 'editPostComponent',
+      //   params: {
+      //     id: '1',
+      //   }
+      // })
   }
 
 

@@ -15,11 +15,11 @@ app.use(express.static(path.join(__dirname, '/../', 'node_modules')))
 
 const messages = require('./routes/classifieds');
 
+app.use('/classifieds',messages);
+
 app.use('*', function(req, res, next) {
   res.sendFile('index.html', {root: path.join(__dirname, 'public')})
 })
-
-app.use('/classifieds',messages);
 
 
 const port = process.env.PORT || 3000;
