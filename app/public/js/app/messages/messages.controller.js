@@ -29,6 +29,8 @@
         function onNewSubmit(data) {
           console.log(data);
           vm.postNewClassified(data);
+          vm.newClassifiedButton = false;
+          vm.newClassified={};
         }//end onNewSubmit
 
         function onEditButton(message) {

@@ -25,7 +25,16 @@
 </form>
 
 <hr>
-<div ng-repeat="message in $ctrl.messages">
+<label for="filter">Filter:</label>
+<input type="text" name="filter" ng-model="filterClassifieds">
+<br>
+<select name="order-by">
+  <option value="">Date</option>
+  <option value="">Price</option>
+</select>
+
+<hr>
+<div ng-repeat="message in $ctrl.messages | filter:filterClassifieds">
 
     <h2>{{message.title}}</h2>
     <img ng-src="{{ message.item_image }}">
