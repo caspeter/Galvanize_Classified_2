@@ -28,10 +28,10 @@
 <label for="filter">Filter:</label>
 <input type="text" name="filter" ng-model="filterClassifieds">
 <br>
-<select name="order-by">
-  <option ng-click="$ctrl.sortByThis = 'created_at'; $ctrl.sortOrder= true; ">Date</option>
-  <option value="">Price</option>
-</select>
+<form name="order-by">
+  <input type="radio" ng-click="$ctrl.sortByThis = 'created_at'; $ctrl.sortOrder= true; ">Date
+  <input type="radio" ng-click="$ctrl.sortByThis = 'price'; $ctrl.sortOrder= false; ">Price
+</form>
 
 <hr>
 <div ng-repeat="message in $ctrl.messages | filter:filterClassifieds | orderBy: $ctrl.sortByThis : $ctrl.sortOrder">
@@ -40,7 +40,7 @@
     <img ng-src="{{ message.item_image }}">
     <p>{{ message.description }}</p>
     <p>${{ message.price }}</p>
-
+    <span am-time-ago="message.created_at"></span>
     <p><button type="button" name="edit-this-classified" ng-click=" $ctrl.onEditButton(message)">Edit</button></p>
 
     <div ng-if="message.showEditForm === true">
