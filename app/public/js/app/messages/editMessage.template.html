@@ -7,7 +7,7 @@
   <p><button type="button" name="edit-this-classified" ng-click="$ctrl.message.showEditForm = !$ctrl.message.showEditForm">Edit</button></p>
 
   <div ng-if="$ctrl.message.showEditForm === true">
-    <form ng-submit="$ctrl.onNewSubmit($ctrl.newClassified)">
+    <form ng-submit="$ctrl.patchClassified($ctrl.editableData)">
     <div>
         <label for="title">Title:</label>
         <input type="text" name="title" ng-model="$ctrl.editableData.title">

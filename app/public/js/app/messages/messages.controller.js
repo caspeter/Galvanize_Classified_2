@@ -16,7 +16,10 @@
         vm.$onInit = onInit;
         vm.getMessages = getMessages;
         vm.onNewSubmit = onNewSubmit;
+        vm.onEditButton = onEditButton;
         vm.postNewClassified = postNewClassified;
+        vm.onUpdateSubmit = onUpdateSubmit;
+        vm.deleteClassified = deleteClassified;
 
         function onInit() {
           vm.messages = [];
@@ -28,11 +31,29 @@
           vm.postNewClassified(data);
         }//end onNewSubmit
 
+        function onEditButton(message) {
+          console.log('onEditButton');
+          message.showEditForm = !message.showEditForm;
+          vm.editableData = {
+            id: message.id,
+            title: message.title,
+            description: message.description,
+            price: message.price,
+            item_image: message.item_image
+          };
+        };// end onEditButton
+
+        function onUpdateSubmit(input) {
+          console.log(input);
+          $http.patch(`/classifieds/${input.id}`, input).then((response)=>{
+            vm.getMessages();
+          })
+        }
 
         function getMessages() {
             $http.get('/classifieds').then((response) => {
                 vm.messages = response.data;
-                console.log(response.data);
+                // console.log(response.data);
             });
         }//end getMessage
 
@@ -42,6 +63,12 @@
           });
         }// end postNewClassified
 
+        function deleteClassified(id) {
+          console.log(id);
+          $http.delete(`/classifieds/${id}`).then((response)=>{
+            vm.getMessages();
+          })
+        }//end deleteClassified
 
     }//end controller
 
