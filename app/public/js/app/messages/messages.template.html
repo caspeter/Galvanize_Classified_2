@@ -1,5 +1,6 @@
 <h2>New Classified</h2>
-<form ng-submit="$ctrl.onNewSubmit($ctrl.newClassified)">
+<button type="button" name="openNewClassifiedForm" ng-click="$ctrl.newClassifiedButton = !$ctrl.newClassifiedButton">New Classified</button>
+<form ng-if="$ctrl.newClassifiedButton === true" ng-submit="$ctrl.onNewSubmit($ctrl.newClassified)">
     <div>
         <label for="title">Title:</label>
         <input type="text" name="title" ng-model="$ctrl.newClassified.title">
