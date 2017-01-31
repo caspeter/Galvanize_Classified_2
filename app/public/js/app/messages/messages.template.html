@@ -29,12 +29,12 @@
 <input type="text" name="filter" ng-model="filterClassifieds">
 <br>
 <select name="order-by">
-  <option value="">Date</option>
+  <option ng-click="$ctrl.sortByThis = 'created_at'; $ctrl.sortOrder= true; ">Date</option>
   <option value="">Price</option>
 </select>
 
 <hr>
-<div ng-repeat="message in $ctrl.messages | filter:filterClassifieds">
+<div ng-repeat="message in $ctrl.messages | filter:filterClassifieds | orderBy: $ctrl.sortByThis : $ctrl.sortOrder">
 
     <h2>{{message.title}}</h2>
     <img ng-src="{{ message.item_image }}">
