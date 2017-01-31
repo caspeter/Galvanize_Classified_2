@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/', (req,res,next)=>{
   knex('classifieds')
-  .select('id', 'title', 'description','price', 'item_image')
+  .select('id', 'title', 'description','price', 'item_image', 'created_at')
   .then((response)=>{
     res.send(response);
   })
@@ -23,7 +23,7 @@ router.get('/', (req,res,next)=>{
 router.get('/:id', (req,res,next)=>{
   knex('classifieds')
   .where('id', req.params.id)
-  .select('id', 'title', 'description','price', 'item_image')
+  .select('id', 'title', 'description','price', 'item_image', 'created_at')
   .then((response)=>{
     res.send(response[0])
   })
@@ -39,7 +39,7 @@ router.post('/', function (req,res) {
     description: req.body.description,
     price: req.body.price,
     item_image: req.body.item_image
-  }, ['id', 'title', 'description','price', 'item_image'])
+  }, ['id', 'title', 'description','price', 'item_image', 'created_at'])
   .then(function(response){
     res.send(response[0]);
   })
@@ -56,7 +56,7 @@ router.patch('/:id', (req,res)=>{
         'description': req.body.description,
         'price': req.body.price,
         'item_image': req.body.item_image
-      }, ['id', 'title', 'description','price', 'item_image'])
+      }, ['id', 'title', 'description','price', 'item_image', 'created_at'])
       .then((response) => {
         let theResponse = response[0];
         res.send(theResponse);
@@ -70,7 +70,7 @@ router.delete('/:id', (req,res)=>{
   knex('classifieds')
   .where('id', req.params.id)
   .del()
-  .returning(['id', 'title', 'description','price', 'item_image'])
+  .returning(['id', 'title', 'description','price', 'item_image', 'created_at'])
   .then((response)=>{
     // var sendResponse = response[0];
     res.send(response[0])
