@@ -28,10 +28,8 @@
 <label for="filter">Filter:</label>
 <input type="text" name="filter" ng-model="filterClassifieds">
 <br>
-<form name="order-by">
-  <input type="radio" ng-click="$ctrl.sortByThis = 'created_at'; $ctrl.sortOrder= true; ">Date
-  <input type="radio" ng-click="$ctrl.sortByThis = 'price'; $ctrl.sortOrder= false; ">Price
-</form>
+  <button type="radio" ng-click="$ctrl.sortByThis = 'created_at'; $ctrl.sortOrder= true; "> Date </button>
+  <button type="radio" ng-click="$ctrl.sortByThis = 'price'; $ctrl.sortOrder= false; ">Price </button>
 
 <hr>
 <div ng-repeat="message in $ctrl.messages | filter:filterClassifieds | orderBy: $ctrl.sortByThis : $ctrl.sortOrder">
